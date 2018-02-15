@@ -44,4 +44,11 @@ class Albums
     return albums.map { |album_hash| Albums.new(album_hash)}
   end
 
+  def Albums.find(id)
+   sql = "SELECT * FROM albums WHERE id = $1;"
+   values = [id]
+   finds = SqlRunner.run(sql, values)
+   return finds.map { |find| Albums.new(find) }
+ end
+
 end #end of class

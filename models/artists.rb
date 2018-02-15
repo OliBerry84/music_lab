@@ -48,4 +48,11 @@ artists = SqlRunner.run(sql)
 return artists.map { |artist_hash| Artists.new(artist_hash) }
   end
 
+  def Artists.find(id)
+  sql = "SELECT * FROM artists WHERE id = $1;"
+  values = [id]
+  finds = SqlRunner.run(sql, values)
+  return finds.map { |find| Artists.new(find) }
+end
+
 end #end of class
